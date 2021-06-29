@@ -6,8 +6,8 @@
   <a href="{% url 'addMemes'  %}"><button type="button" class="btn btn-info">Add Memes</button></a>
   {% endifequal %}
 {% for r in content %}
-<center><div class="card" style="width: 1000px">
-  <img class="card-img-top" src="{{r.image.url}}"    height="500rem">
+<center><div class="card" style="width: 700px">
+  <img class="card-img-top" src="{{r.image.url}}"    height="500rem"><br>
 
 </div>
      {% ifequal c 1  %}

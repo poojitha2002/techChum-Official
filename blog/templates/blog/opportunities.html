@@ -46,9 +46,10 @@
              <p >{{s.url|safe}}</p>
                     {% ifequal c 1  %}
                        <a href="{% url 'deleteScholarship' s.id %}"><button type="button" class="btn btn-danger">Delete this Scholarship</button></a><br><br>
+                    <br>
+                <br>
                     {% endifequal %}
-                <br>
-                <br>
+
 
             {% endfor %}
                 </div>

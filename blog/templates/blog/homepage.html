@@ -1,3 +1,5 @@
+
+
 {% load static %}
 
 <html>
@@ -190,7 +192,7 @@ ul.social-network li {
     {% else %}
     <title>
           TechChum
-    </title>
+        </title>
 
     {% endif %}
 </head>
@@ -199,9 +201,7 @@ ul.social-network li {
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
           <a class="navbar-brand mr-4" href="{% url 'homepage' %}">TechChum</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
+
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
 
@@ -220,14 +220,10 @@ ul.social-network li {
 
   <div class="dropdown-menu">
 
-      <a   style="text-decoration:none"  href="{% url 'courses' %}" ><button class="dropdown-item"  >Courses</button></a>
- <a   style="text-decoration:none"  href="{% url 'mock' %}" ><button class="dropdown-item"  >Mock Interviews</button></a>
+       <a   style="text-decoration:none"  href="{% url 'courses' %}" ><button class="dropdown-item">Courses</button></a>
+       <a   style="text-decoration:none"  href="{% url 'mock' %}" ><button class="dropdown-item"  >Mock Interviews</button></a>
        <a   style="text-decoration:none"  href="{% url 'opp' %}" ><button class="dropdown-item"  >Opportunities Club</button></a>
        <a   style="text-decoration:none"  href="{% url 'klu' %}" ><button class="dropdown-item"  >KL Hub</button></a>
-
-
-
-
   </div>
 </div>
 
@@ -266,15 +262,9 @@ ul.social-network li {
     </header>
 
     <main role="main" class="container">
-      <div class="row">
+        <div class="row">
         <div class="col-md-8">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
+
 
 <img src="{% static 'blog/home.png' %}" alt="My image" width="750px" height="400px"><br><br>
 
@@ -360,14 +350,14 @@ ul.social-network li {
 
       </div>
 
-     <div class="col-md-4">
+        <div class="col-md-4">
           <div class="content-section">
             <h3>Announcements</h3>
             <p class='text-muted'>Checkout the latest updates
               {% ifequal c 1  %}
   <a href="{% url 'addAnnouncement'  %}"><button type="button" class="btn btn-info">Add Announcements</button></a>
   {% endifequal %}
-          <!--     <ul class="list-group">
+              <ul class="list-group">
 
 
 
@@ -382,7 +372,7 @@ ul.social-network li {
                    </li>
              {% endfor %}
 
-              </ul> -->
+              </ul>
             </p>
           </div>
         </div>

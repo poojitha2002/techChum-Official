@@ -268,7 +268,6 @@ def addContest(request):
         if form.is_valid():
             form.save()
             #x=CoursesForInterviews(courseName=courseName,image=image,content=content)
-            x.save()
 
             messages.success(request,f'Contest was Added ')
             return redirect('contests')
