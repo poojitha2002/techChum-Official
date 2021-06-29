@@ -51,6 +51,7 @@ def index(request):
 
 def login(request):
     userInfo = False
+    print('username = ',request.POST.get('username'))
     if('refresh' in request.POST):
         userInfo = userDetails(request.POST.get('username'), False)
     else:
@@ -67,28 +68,26 @@ def login(request):
     for i in response['result']:
         verdict.append(i['verdict'])
     counter = Counter(verdict)
-    print(counter)
+    #print(counter)
     label = []
     data = []
     for verdict, count in counter.items():
         label.append(verdict)
         data.append(count)
-    chart = get_plot9(label, data,data)
-    verdict=[]
+    verdict1=[]
     res=response['result']
     for i in res:
         if i['verdict']=="OK":
             for j in (i['problem']['tags']):
-                verdict.append(j)
-    counter = Counter(verdict)
-    print(counter)
-    label = []
-    data = []
+                verdict1.append(j)
+    counter = Counter(verdict1)
+    #print(counter)
+    label1 = []
+    data1 = []
     for verdict, count in counter.items():
-        label.append(verdict)
-        data.append(count)
-    chart1 = get_plot10(label, data, data)
-    return render(request, 'blog/profile.html', {'user': userInfo, 'lastOnline': dt_object, 'tags': weakTags,'chart':chart,'chart1':chart1})
+        label1.append(verdict)
+        data1.append(count)
+    return render(request, 'blog/profile.html', {'user': userInfo, 'lastOnline': dt_object, 'tags': weakTags,'labels':label,'data':data,'labels1':label1,'data1':data1})
 
 
 def cf(request):
