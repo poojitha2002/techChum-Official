@@ -43,6 +43,7 @@ from  blog.extraMethods import userDetails, convertUnixTime, getTags, contestDet
 
 # Create your views here.
 
+admin='p@o@django1@4'
 @login_required
 def index(request):
     return render(request, 'blog/login.html', {'giveError': False})
@@ -101,7 +102,7 @@ def futureContests(request):
 def homepage(request):
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     announcement = Announcements.objects.all()
     return render(request,'blog/homepage.html',{'c':c,'announcement':announcement})
@@ -147,7 +148,7 @@ def opportunities(request):
     fellowships=Fellowships.objects.all()
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     context={'scholorships':scholorships,'internships':internships,'fellowships':fellowships,'c':c}
     return render(request,'blog/opportunities.html',context)
@@ -158,7 +159,7 @@ def CoursesInterviews(request):
     courses=CoursesForInterviews.objects.all()
     #print("user= ",user)
     c=0
-    if user=='poojitha':
+    if user==admin:
         c=1
     #print(c)
     #print(type(user))
@@ -169,7 +170,7 @@ def CoursesInterviews(request):
 def memes(request):
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     content=Memes.objects.all()
     context={'content':content,'c':c}
@@ -180,7 +181,7 @@ def showContent(request,id):
     user = str(request.user)
     content=CoursesForInterviewsContent.objects.filter(course=id)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     context={'content':content,'c':c,'id':id}
     return render(request,'blog/coursecontent.html',context)
@@ -214,7 +215,7 @@ def addAnnouncement(request):
 def KLHub(request):
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     content = KLCourse.objects.all()
     context = {'content': content, 'c': c}
@@ -456,7 +457,7 @@ def opportunitiesIntern(request):
 def Showfiles(request,id):
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user ==admin:
         c = 1
     allfiles=Allfiles.objects.filter(course=id)
     context={'allfiles':allfiles,'c':c,'id':id}
@@ -543,7 +544,7 @@ def contests(request):
     cont=Contest.objects.all()
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     context={'cont':cont,'c':c}
     return render(request,'blog/contests.html',context)
@@ -553,7 +554,7 @@ def contestDesc(request,id):
     user = str(request.user)
 
     c1 = 0
-    if user == 'poojitha':
+    if user == admin:
         c1 = 1
     desc=ContestQuestions.objects.filter(contest=id)
     obj = Contest.objects.get(pk=id)
@@ -593,7 +594,7 @@ def goodies(request):
     current_user = request.user
     user = str(request.user)
     c = 0
-    if user == 'poojitha':
+    if user == admin:
         c = 1
     print(vouchers)
     print(current_user.username)
@@ -671,15 +672,19 @@ def paint(request):
 def courses(request):
     return render(request,'blog/courses.html');
 
+
+
 @login_required
 def contact(request):
-
-	if request.method == 'POST':
-		message = request.POST['message']
-
-		send_mail('Contact Form',message, settings.EMAIL_HOST_USER,['ravuri.poojitha123@gmail.com'], fail_silently=False)
-	return render(request, 'blog/contactus.html')
-
+    if request.method=='POST':
+        name=request.POST['nm']
+        subject=request.POST['subject']
+        message=request.POST['message']
+        email=request.POST['em']
+        message =subject+"\n"+name+"\n"+email+"\n"+message
+        #print(email)
+        send_mail(subject,message,email,['techchumofficial@gmail.com'],fail_silently=False)
+    return render(request,'blog/contactus.html')
 
 @login_required
 def viewScholorships(request):
