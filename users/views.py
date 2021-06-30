@@ -21,11 +21,9 @@ def register(request):
             username = form.cleaned_data.get('username')
             email=form.cleaned_data.get('email')
             clg=form.cleaned_data.get('clg')
-            print(clg)
+
             b=Goodies(coins=0,author=username)
             b.save()
-            u=UserDummy(author=username)
-            u.save()
             messages.success(request, f'Your account has been created! You are now able to log in')
             '''subject = 'Welcome to TechChum'
             message = f'Hello {username}!\nYou have successfully created a TechChum account.Thank you for teaming up with us, the best place to prepare for your dream Tech job.\nUse our site and avail the following benefits\n1.Get updated with latest Internships, Fellowships and Scholarships.\n2.Get access to structured courses and ace your interviews.\n3.Practice Mock Interviews and boost up your confidence\n4.Get your doubts resolved using our Discussion Forums and many more..\n\nSo what are you waiting for....Go ahead and avail all the benefits.\nOur social handles:\nLinkedIn: https://www.linkedin.com/company/techchum/\nFacebook:https://www.facebook.com/techchum.techchum\nInstagram:https://www.instagram.com/techchum/\nTelegram:https://t.me/techchum'
@@ -96,6 +94,8 @@ def register(request):
             # send an test email
             send_email(subject=subject, text_content=text_message, html_content=html_message, sender=sender,
                        recipient=recipient, image_path=image_path, image_name=image_name)
+
+
             return redirect('login')
     else:
         form = UserRegisterForm()

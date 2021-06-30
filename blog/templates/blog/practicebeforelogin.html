@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% load static %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+
+        <th scope="col"> <a href="{% url 'sortdown' %}"><img src="https://img.icons8.com/cute-clipart/64/000000/sort-down.png"/></a>Rating<a href="{% url 'sortup' %}"><img src="https://img.icons8.com/cute-clipart/64/000000/sort-up.png"/></a></th>
+
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+{% for i in x %}
+
+
+    <tr>
+       <th scope="row" ><a href="https://codeforces.com/contest/{{i.contestId}}/problem/{{i.index}} " target="_blank">{{i.contestId}}{{i.index}}</a></th>
+      <td> <a href="https://codeforces.com/contest/{{i.contestId}}/problem/{{i.index}}" target="_blank"> {{i.name}}</a></td>
+      <td>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{i.rating}}</td>
+
+    </tr>
+
+{% endfor %}
+ </tbody>
+</table>
+<br>
+
+<h5><a href="{% url   'login' %}">Login</a>/<a href="{% url 'register' %}">Register</a> to unlock other problems</h5>
+
+<img src="{% static 'blog/unlock.png' %}" alt="My image" width="450px" height="300px"><br><br>
+
+
+{% endblock content %}

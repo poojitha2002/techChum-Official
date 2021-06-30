@@ -186,7 +186,8 @@ ul.social-network li {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-
+<link rel="icon" type="image/jpg"
+    href="{% static 'blog/demo_icon.png' %}" />
     {% if title %}
         <title> TechChum - {{ title }}</title>
     {% else %}
@@ -212,7 +213,7 @@ ul.social-network li {
               <a class="nav-item nav-link" href="{% url 'contests' %}">Contests</a>
 
                   <a class="nav-item nav-link" href="{% url 'blog-home' %}">Discussion Forum</a>
-                  <a class="nav-item nav-link" href="{% url 'index' %}">Recommendation System</a>
+                  <a class="nav-item nav-link" href="{% url 'index' %}">Personalize your goals</a>
                    <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Prepare

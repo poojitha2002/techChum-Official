@@ -401,7 +401,7 @@ def sortdown(request):
     return render(request, 'blog/practicesortdown.html', context)
 
 
-@login_required
+
 def practice(request):
     response=requests.get('https://codeforces.com/api/problemset.problems').json()
     #print(response['result'])
@@ -412,34 +412,38 @@ def practice(request):
         if 'rating' in i.keys():
             final.append(i)
 
-    p=Paginator(final,10)
-    if request.method=="POST":
-        some_var = request.POST.getlist('checks[]')
-        print("Check boxes: \n",some_var)
-        ll=request.POST['ll']
-        ul=request.POST['ul']
-        print("ll=",ll)
-        print('ul= ',ul)
+    x=final[0:5]
+    if str(request.user)=='AnonymousUser':
+        return render(request,'blog/practicebeforelogin.html',{'x':x})
+    else:
+        print("*00")
+        p = Paginator(final, 10)
+        if request.method == "POST":
+            some_var = request.POST.getlist('checks[]')
+            print("Check boxes: \n", some_var)
+            ll = request.POST['ll']
+            ul = request.POST['ul']
+            print("ll=", ll)
+            print('ul= ', ul)
 
-        if len(ll)!=0 and len(ul)!=0:
-            stuff2 = []
-            for i in final:
-                if   i['rating'] >= int(ll) and i['rating'] <=int(ul):
-                    stuff2.append(i)
-            p=Paginator(stuff2,10)
-        else:
-            p=Paginator(final,10)
+            if len(ll) != 0 and len(ul) != 0:
+                stuff2 = []
+                for i in final:
+                    if i['rating'] >= int(ll) and i['rating'] <= int(ul):
+                        stuff2.append(i)
+                p = Paginator(stuff2, 10)
+            else:
+                p = Paginator(final, 10)
+
+        page_num = request.GET.get('page', 1)
+        try:
+            page = p.page(page_num)
+        except EmptyPage:
+            page = p.page(1)
+        context = {'items': page}
+        return render(request, 'blog/practice.html', context)
 
 
-    page_num=request.GET.get('page',1)
-    try:
-        page=p.page(page_num)
-    except EmptyPage:
-        page=p.page(1)
-
-
-    context={'items':page}
-    return render(request,'blog/practice.html',context)
 
 
 @login_required
@@ -534,7 +538,7 @@ def deleteContest(request,id):
     messages.success(request, f'Your  contest was deleted successfully ')
     return redirect('contests')
 
-@login_required
+
 def contests(request):
     cont=Contest.objects.all()
     user = str(request.user)
@@ -543,6 +547,7 @@ def contests(request):
         c = 1
     context={'cont':cont,'c':c}
     return render(request,'blog/contests.html',context)
+
 @login_required
 def contestDesc(request,id):
     user = str(request.user)

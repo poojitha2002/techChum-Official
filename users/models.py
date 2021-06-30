@@ -21,7 +21,8 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 class UserDummy(models.Model):
-    author=models.CharField(max_length=100)
+    author=models.ForeignKey(User, on_delete=models.CASCADE)
+    clg=models.CharField(max_length=100,default='null')
     def __str__(self):
         return self.author
 

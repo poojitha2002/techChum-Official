@@ -5,6 +5,7 @@ from .models import Profile
 
 
 CLG_CHOICES= [
+('Select College/ University', 'Select College/ University'),
     ('IIT', 'IIT'),
     ('NIT', 'NIT'),
     ('BITs', 'BITs'),
@@ -16,8 +17,6 @@ CLG_CHOICES= [
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     clg = forms.CharField(label='College / University : ', widget=forms.Select(choices=CLG_CHOICES))
-
-
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2','clg']
